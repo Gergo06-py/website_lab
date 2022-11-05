@@ -7,51 +7,66 @@
 }
 
 body {
-    background-color: #333;
+    background-color: #fff;
     font-family: 'Poppins', sans-serif;
+    /* Alternative font family */
     /* font-family: 'JetBrains Mono', monospace; */
 }
 
 nav {
-    background-color: #666;
+    background-color: #fff;
+    box-shadow: 0 0 10px -5px #000;
     width: 100vw;
-    min-height: 0;
+    border-radius: 0 0 8px 8px;
 }
 
 nav ul {
     list-style-type: none;
     display: flex;
-    flex-direction: row;
+    justify-content: space-around;
 }
 
 nav li {
-    padding: 5px 10px 10px 10px;
-    flex-grow: 1;
-    vertical-align: center;
-    align-self: center;
+    width: 100%;
+    padding: 10px;
     text-align: center;
 }
 
-a {
-    color: black;
+nav a {
+    position: relative;
+    width: 20px;
+    color: #000;
     text-decoration: none;
+    outline: none;
 }
 
-li:hover {
-    text-decoration: underline dashed 2px;
-    text-underline-offset: 4px;
+nav a::before {
+    content: '';
+    width: 100%;
+    border-bottom: dashed 2px #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease-in-out;
+}
+
+li:hover > a::before, li:focus-within > a::before {
+    transform: scaleX(1);
+    transform-origin: left;
     cursor: pointer;
 }
 
 header {
-    position: fixed;
+    position: static;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 header h1 {
-    color: white;
+    color: #fff;
 }
 
 /* Animation */
@@ -64,14 +79,16 @@ header h1 {
     nav {
         width: 150px;
         min-height: 100vh;
+        border-radius: 0 8px 8px 0;
     }
 
     nav ul {
+        gap: 15px;
         flex-direction: column;
+        padding: 5px 10px;
     }
 
     nav li {
-        padding: 5px 10px 15px 10px;
         width: 100%;
         text-align: left;
     }
