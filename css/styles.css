@@ -1,95 +1,195 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    background-color: #fff;
-    font-family: 'Poppins', sans-serif;
-    /* Alternative font family */
-    /* font-family: 'JetBrains Mono', monospace; */
+	background-color: #fff;
+	font-family: "Poppins", sans-serif;
+	/* Alternative font family */
+	/* font-family: 'JetBrains Mono', monospace; */
 }
 
-nav {
-    background-color: #fff;
-    box-shadow: 0 0 10px -5px #000;
-    width: 100vw;
-    border-radius: 0 0 8px 8px;
+#hamburger-menu {
+	display: none;
 }
 
-nav ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-}
-
-nav li {
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-}
-
-nav a {
-    position: relative;
-    width: 20px;
-    color: #000;
-    text-decoration: none;
-    outline: none;
-}
-
-nav a::before {
+#hamburger-menu-icon {
     content: '';
-    width: 100%;
-    border-bottom: dashed 2px #000;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.25s ease-in-out;
-}
-
-li:hover > a::before, li:focus-within > a::before {
-    transform: scaleX(1);
-    transform-origin: left;
-    cursor: pointer;
-}
-
-header {
-    position: static;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background: #000;
+    width: 50%;
+    height: 2px;
+    border-radius: 2px;
+}
+
+#hamburger-menu-icon::before {
+    content: '';
+    position: absolute;
+    bottom: 250%;
+    left: 0;
+    background: #000;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+}
+
+#hamburger-menu-icon::after {
+    content: '';
+    position: absolute;
+    top: 250%;
+    left: 0;
+    background: #000;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+}
+
+nav {
+	background-color: #fff;
+	box-shadow: 0 0 10px -5px #000;
+	border-bottom: solid 2px #0003;
+	border-radius: 0 0 0.5em 0.5em;
+}
+
+nav ul {
+	list-style-type: none;
+	display: flex;
+	justify-content: space-around;
+}
+
+nav li {
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+}
+
+nav a {
+	position: relative;
+	width: 20px;
+	color: #000;
+	text-decoration: none;
+	outline: none;
+}
+
+nav a::before {
+	content: "";
+	width: 100%;
+	border-bottom: dashed 2px #000;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform 0.25s ease-in-out;
+}
+
+li:hover > a::before,
+li:focus-within > a::before {
+	transform: scaleX(1);
+	transform-origin: left;
+	cursor: pointer;
+}
+
+header {
+	position: static;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 header h1 {
-    color: #fff;
+	color: #fff;
+}
+
+main {
+	width: 100%;
+}
+
+.content {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 20px;
+	margin: 20px;
+}
+
+article {
+	background: #fff;
+	padding: 1em;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 10px -5px #000;
 }
 
 /* Animation */
 
-
-
 /* Responsive content */
 
 @media only screen and (max-width: 768px) {
-    nav {
-        width: 150px;
-        min-height: 100vh;
-        border-radius: 0 8px 8px 0;
+	#hamburger-menu {
+		background: #fff;
+		display: block;
+		position: sticky;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 60px;
+		border-bottom: solid 2px #0003;
+		box-shadow: 0 0 10px -5px #000;
+	}
+
+    #hamburger-menu-btn {
+        background: #fff;
+        position: relative;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        width: 40px;
+		height: 40px;
+        border: none;
+        border: solid 2px #0003;
+        border-radius: 5px;
+        box-shadow: 0 0 10px -5px #000;
+        transition: transform 0.25s 0.25s ease-in-out, left 0.25s 0.25s ease-in-out;
     }
 
-    nav ul {
-        gap: 15px;
-        flex-direction: column;
-        padding: 5px 10px;
-    }
+	#hamburger-menu-btn:focus {
+        left: 0;
+		transform: translate(-100%, -50%);
+		transition: transform 0.25s ease-in-out, left 0.25s ease-in-out;
+	}
 
-    nav li {
-        width: 100%;
-        text-align: left;
-    }
+	nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		transform: translateX(-100%);
+		width: 150px;
+		height: 100vh;
+		border: none;
+		border-right: solid 2px #0003;
+		border-radius: 0 0.5em 0.5em 0;
+		transition: transform 0.25s ease-in-out;
+	}
+
+	#hamburger-menu:has(#hamburger-menu-btn:focus) ~ nav, nav:has(a:focus) {
+		transform: translateX(0);
+		transition: transform 0.25s 0.25s ease-in-out;
+	}
+
+	nav ul {
+		gap: 15px;
+		flex-direction: column;
+		padding: 5px 10px;
+	}
+
+	nav li {
+		width: 100%;
+		text-align: left;
+	}
 }
